@@ -17,6 +17,7 @@ echo $' === === project log === ===
   Repo: https://github.com/tryber/sd-015-a-store-manager
 
   === === end of log === ===
+  testing
 '
 
 docker-compose up --force-recreate -d;
