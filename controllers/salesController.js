@@ -6,6 +6,13 @@ const getSales = rescue(async (_req, res) => {
   res.status(200).json(allSales);
 });
 
+const getSaleById = rescue(async (req, res) => {
+  const { id } = req.params;
+  const saleById = await salesService.getSaleById(id);
+  res.status(200).json(saleById);
+});
+
 module.exports = {
   getSales,
+  getSaleById,
 };
