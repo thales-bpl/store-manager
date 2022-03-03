@@ -9,6 +9,7 @@ const getSales = rescue(async (_req, res) => {
 const getSaleById = rescue(async (req, res) => {
   const { id } = req.params;
   const saleById = await salesService.getSaleById(id);
+  console.log(saleById);
   res.status(200).json(saleById);
 });
 

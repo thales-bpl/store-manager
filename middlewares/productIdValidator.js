@@ -7,7 +7,7 @@ const NO_PRODUCT = {
 const productIdValidator = async (req, res, next) => {
   const { id } = req.params;
   const validId = await productModel.getProductById(id);
-  if (validId.length === 0) return res.status(404).json(NO_PRODUCT);
+  if (!validId) return res.status(404).json(NO_PRODUCT);
   next();
 };
 

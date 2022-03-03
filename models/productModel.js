@@ -12,7 +12,7 @@ const getProductById = async (id) => {
     WHERE id = ?
     ORDER BY id;`;
   const [rows] = await connection.execute(query, [id]);
-  return rows;
+  return rows[0];
 };
 
 module.exports = {

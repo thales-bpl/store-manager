@@ -16,8 +16,8 @@ const getSaleById = async (id) => {
   INNER JOIN StoreManager.sales_products AS products ON sale_id = sales.id
   WHERE id = ?
   ORDER BY saleId, productId DESC;`;
-const [rows] = await connection.execute(query, [id]);
-return rows;
+  const rows = await connection.execute(query, [id]);
+  return rows[0];
 };
 
 module.exports = {
