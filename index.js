@@ -4,13 +4,13 @@ const bodyParser = require('body-parser');
 
 const errorMiddleware = require('./middlewares/error');
 const productRouter = require('./routes/productRouter');
-// const salesRouter = require('./routes/salesRouter');
+const salesRouter = require('./routes/salesRouter');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use('/products', productRouter);
-// app.use('/sales', salesRouter);
+app.use('/sales', salesRouter);
 app.use(errorMiddleware);
 
 // não remova esse endpoint, e para o avaliador funcionar
