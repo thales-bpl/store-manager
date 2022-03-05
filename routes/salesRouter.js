@@ -3,10 +3,10 @@ const express = require('express');
 const router = express.Router();
 
 const salesController = require('../controllers/salesController');
-const saleIdValidator = require('../middlewares/saleIdValidator');
+const saleIdVerify = require('../middlewares/saleIdVerify');
 
 router
   .get('/', salesController.getSales)
-  .get('/:id', saleIdValidator, salesController.getSaleById);
+  .get('/:id', saleIdVerify, salesController.getSaleById);
 
 module.exports = router;
