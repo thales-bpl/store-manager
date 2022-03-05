@@ -6,8 +6,11 @@ const PRODUCT_ID_REQUIRED = {
 
 const saleProductIdValidator = (req, res, next) => {
   const { body } = req;
+
   const hasId = body.every((product) => product.productId !== undefined);
+
   if (!hasId) return res.status(HTTP_BAD_REQUEST).json(PRODUCT_ID_REQUIRED);
+
   next();
 };
 

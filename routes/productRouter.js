@@ -4,9 +4,13 @@ const router = express.Router();
 
 const productController = require('../controllers/productController');
 const productIdVerify = require('../middlewares/productIdVerify');
+const productNameValid = require('../middlewares/productNameValid');
+const productQntValid = require('../middlewares/productQntValid');
+const productNameVerify = require('../middlewares/productNameVerify');
 
 router
   .get('/', productController.getProducts)
-  .get('/:id', productIdVerify, productController.getProductById);
+  .get('/:id', productIdVerify, productController.getProductById)
+  .post('/', productQntValid, productNameValid, productNameVerify, productController.postProduct);
 
 module.exports = router;

@@ -8,8 +8,11 @@ const NO_PRODUCT = {
 
 const productIdVerify = async (req, res, next) => {
   const { id } = req.params;
+
   const validId = await productModel.getProductById(id);
+
   if (!validId) return res.status(HTTP_NOT_FOUND).json(NO_PRODUCT);
+
   next();
 };
 
