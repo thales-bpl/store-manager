@@ -4,20 +4,19 @@ echo $' === === project log === ===
   2. Para acessar mysql: ./terminal.sh > mysql -u root -t
 
   === TO DO LIST ===
-  1. Estudar connection.execute()
-  2. Boa prática model chamando model?
-  3. definir um padrão pra returns dos controllers: com ou sem return?
-  4. Como rodar o comando ``docker exec -it store-manager bash`` pelo docker-compose?
+  1. Como rodar o comando ``docker exec -it store-manager bash`` pelo docker-compose?
 
   === NOTES ===
 
   === BUG LOG ===
+  Reqs 4~6 não passam no avaliador do GH:
+    FetchError: request to http://localhost:3306/products/1 failed, reason: socket hang up
+    FetchError: request to http://localhost:3306/products failed, reason: connect ECONNREFUSED 127.0.0.1:3306
 
   === SRCs ===
   Repo: https://github.com/tryber/sd-015-a-store-manager
 
   === === end of log === ===
-  testing
 '
 
 docker-compose up --force-recreate -d;

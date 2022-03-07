@@ -8,5 +8,6 @@ const saleIdVerify = require('../middlewares/saleIdVerify');
 router
   .get('/', salesController.getSales)
   .get('/:id', saleIdVerify, salesController.getSaleById);
+  // .post('/', salesController.postSales);
 
 module.exports = router;
