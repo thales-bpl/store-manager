@@ -25,9 +25,16 @@ const putProduct = rescue(async (req, res) => {
   res.status(200).json(editedProduct);
 });
 
+const deleteProduct = rescue(async (req, res) => {
+  const { id } = req.params;
+  await productService.deleteProduct(id);
+  res.status(204).end();
+});
+
 module.exports = {
   getProducts,
   getProductById,
   postProduct,
   putProduct,
+  deleteProduct,
 };

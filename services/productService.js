@@ -28,9 +28,14 @@ const putProduct = async (id, name, quantity) => {
   };
 };
 
+const deleteProduct = async (id) => {
+  await productModel.deleteProduct(id);
+};
+
 module.exports = {
   getProducts,
   getProductById,
   postProduct,
   putProduct,
+  deleteProduct,
 };
