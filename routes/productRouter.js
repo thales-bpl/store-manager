@@ -11,6 +11,7 @@ const productNameVerify = require('../middlewares/productNameVerify');
 router
   .get('/', productController.getProducts)
   .get('/:id', productIdVerify, productController.getProductById)
-  .post('/', productQntValid, productNameValid, productNameVerify, productController.postProduct);
+  .post('/', productQntValid, productNameValid, productNameVerify, productController.postProduct)
+  .put('/:id', productIdVerify, productController.putProduct);
 
 module.exports = router;

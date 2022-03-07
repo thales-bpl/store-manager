@@ -18,8 +18,16 @@ const postProduct = rescue(async (req, res) => {
   res.status(201).json(createdProduct);
 });
 
+const putProduct = rescue(async (req, res) => {
+  const { id } = req.params;
+  const { name, quantity } = req.body;
+  const editedProduct = await productService.putProduct(id, name, quantity);
+  res.status(200).json(editedProduct);
+});
+
 module.exports = {
   getProducts,
   getProductById,
   postProduct,
+  putProduct,
 };
