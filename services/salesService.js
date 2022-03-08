@@ -7,17 +7,21 @@ const getSales = async () => {
 
 const getSaleById = async (id) => {
   const saleById = await salesModel.getSaleById(id);
+  return saleById;
+};
 
-  const mapper = (sale) => ({
-    date: sale.date,
-    productId: sale.productId,
-    quantity: sale.quantity,
-  });
+const postSale = async (sale) => {
+  const newSaleId = await salesModel.postSale();
+  await salesModel.insertSalesProduct(newSaleId, sale);
 
-  return saleById.map(mapper);
+  return {
+    id: newSaleId,
+    itemsSold: sale,
+  };
 };
 
 module.exports = {
   getSales,
   getSaleById,
+  postSale,
 };

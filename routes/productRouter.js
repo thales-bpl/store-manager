@@ -12,7 +12,7 @@ router
   .get('/', productController.getProducts)
   .get('/:id', productIdVerify, productController.getProductById)
   .post('/', productQntValid, productNameValid, productNameVerify, productController.postProduct)
-  .put('/:id', productIdVerify, productController.putProduct)
+  .put('/:id', productIdVerify, productQntValid, productNameValid, productController.putProduct)
   .delete('/:id', productIdVerify, productController.deleteProduct);
 
 module.exports = router;

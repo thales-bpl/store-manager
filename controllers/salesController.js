@@ -12,7 +12,14 @@ const getSaleById = rescue(async (req, res) => {
   return res.status(200).json(saleById);
 });
 
+const postSale = rescue(async (req, res) => {
+  const { body } = req;
+  const newSale = await salesService.postSale(body);
+  return res.status(201).json(newSale);
+});
+
 module.exports = {
   getSales,
   getSaleById,
+  postSale,
 };
