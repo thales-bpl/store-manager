@@ -7,7 +7,7 @@ const getSales = async () => {
 
 const getSaleById = async (id) => {
   const saleById = await salesModel.getSaleById(id);
-  
+
   const mapper = (sale) => ({
     date: sale.date,
     productId: sale.productId,
@@ -20,7 +20,7 @@ const getSaleById = async (id) => {
 const postSale = async (sale) => {
   const newSaleId = await salesModel.postSale();
   await salesModel.insertSalesProduct(newSaleId, sale);
-
+  console.log('postSale Service');
   return {
     id: newSaleId,
     itemsSold: sale,

@@ -8,6 +8,9 @@ echo $' === === project log === ===
 
   === NOTES ===
   1. Estudar como rodar o comando ``docker exec -it store-manager bash`` pelo docker-compose?
+  2. Investigar portas:
+    code    23751 limoon   50u  IPv4 226623      0t0  TCP 127.0.0.1:41351 (LISTEN)
+    code    23751 limoon   69u  IPv6 228647      0t0  TCP *:8828 (LISTEN)
 
   === BUG LOG ===
   Reqs 4~6 não passam no avaliador do GH:
