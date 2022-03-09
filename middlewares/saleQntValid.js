@@ -9,15 +9,16 @@ const INVALID_QUANTITY = {
   message: '"quantity" must be greater than or equal to 1',
 };
 
-const productQntValid = (req, res, next) => { // refatorar essa lógica pra evitar multipls returns
+const saleQntValid = (req, res, next) => {
   const { body } = req;
 
-  body.forEach(({ quantity }) => {
-    if (!quantity && quantity !== 0) return res.status(HTTP_BAD_REQUEST).json(QUANTITY_REQUIRED);
-    if (quantity < 1) return res.status(HTTP_UNPROCESSABLE_ENTITY).json(INVALID_QUANTITY);
-  });
+  const missingQuantity = body.some(({ quantity }) => (!quantity && quantity !== 0));
+  const invalidQuantity = body.some(({ quantity }) => quantity < 1);
   
+  if (missingQuantity) return res.status(HTTP_BAD_REQUEST).json(QUANTITY_REQUIRED);
+  if (invalidQuantity) return res.status(HTTP_UNPROCESSABLE_ENTITY).json(INVALID_QUANTITY);
+
   next();
 };
 
-module.exports = productQntValid;
+module.exports = saleQntValid;

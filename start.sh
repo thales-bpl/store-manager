@@ -13,9 +13,15 @@ echo $' === === project log === ===
     code    23751 limoon   69u  IPv6 228647      0t0  TCP *:8828 (LISTEN)
 
   === BUG LOG ===
-  Reqs 4~6 não passam no avaliador do GH:
+  1. Reqs 4~6 não passam no avaliador do GH:
     FetchError: request to http://localhost:3306/products/1 failed, reason: socket hang up
     FetchError: request to http://localhost:3306/products failed, reason: connect ECONNREFUSED 127.0.0.1:3306
+
+  2. Req 7 funciona na aplicação mas não passa no teste local
+    npm ERR! code ELIFECYCLE
+    npm ERR! errno 1
+    FetchError: request to http://localhost:3000/sales/ failed, reason: socket hang up
+    FetchError: request to http://localhost:3000/sales/ failed, reason: connect ECONNREFUSED 127.0.0.1:3000
 
   === SRCs ===
   Repo: https://github.com/tryber/sd-015-a-store-manager
