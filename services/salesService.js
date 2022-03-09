@@ -20,7 +20,6 @@ const getSaleById = async (id) => {
 const postSale = async (sale) => {
   const newSaleId = await salesModel.postSale();
   await salesModel.insertSalesProduct(newSaleId, sale);
-  console.log('postSale Service');
   return {
     id: newSaleId,
     itemsSold: sale,

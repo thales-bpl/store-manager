@@ -6,10 +6,11 @@ const salesController = require('../controllers/salesController');
 const saleIdVerify = require('../middlewares/saleIdVerify');
 const saleQntValid = require('../middlewares/saleQntValid');
 const saleProductIdValid = require('../middlewares/saleProductIdValid');
+// const saleProductIdVerify = require('../middlewares/saleProductIdVerify');
 
 router
   .get('/', salesController.getSales)
   .get('/:id', saleIdVerify, salesController.getSaleById)
-  .post('/', saleQntValid, saleProductIdValid, salesController.postSale);
+  .post('/', saleQntValid, saleProductIdValid, /* saleProductIdVerify, */ salesController.postSale);
 
 module.exports = router;

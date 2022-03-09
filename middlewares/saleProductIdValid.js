@@ -7,7 +7,7 @@ const PRODUCT_ID_REQUIRED = {
 const saleProductIdValid = (req, res, next) => {
   const { body } = req;
 
-  const missingId = body.some(({ productId }) => productId === undefined);
+  const missingId = body.some(({ product_id: id }) => !id);
 
   if (missingId) return res.status(HTTP_BAD_REQUEST).json(PRODUCT_ID_REQUIRED);
 
