@@ -1,16 +1,17 @@
 echo $' === === project log === ===
   === START ===
   1. Iniciar aplicação com npm start | npm run debug
-  2. Para acessar mysql: ./terminal.sh > mysql -u root -t
+  2. Para acessar mysql: ./terminal.sh > mysql -u root -p > root
 
   === TO DO LIST ===
-  1. Fix MW de quantidade para arrays
+  1. Fix saleProductIdVerify MW
 
   === NOTES ===
   1. Estudar como rodar o comando ``docker exec -it store-manager bash`` pelo docker-compose?
   2. Investigar portas:
     code    23751 limoon   50u  IPv4 226623      0t0  TCP 127.0.0.1:41351 (LISTEN)
     code    23751 limoon   69u  IPv6 228647      0t0  TCP *:8828 (LISTEN)
+  3. Como subir a schema na mysql no Start do projeto
 
   === BUG LOG ===
   1. Reqs 4~6 não passam no avaliador do GH:

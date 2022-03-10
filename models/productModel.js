@@ -9,8 +9,7 @@ const getProducts = async () => {
 
 const getProductById = async (id) => {
   const query = `SELECT * FROM products
-    WHERE id = ?
-    ORDER BY id;`;
+    WHERE id = ?;`;
   const [rows] = await connection.execute(query, [id]);
   return rows[0];
 };

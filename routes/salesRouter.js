@@ -10,7 +10,7 @@ const saleProductIdValid = require('../middlewares/saleProductIdValid');
 
 router
   .get('/', salesController.getSales)
-  .get('/:id', saleIdVerify, salesController.getSaleById)
+  .get('/:id', saleIdVerify, salesController.getSaleById) // verificar se o id venda existe
   .post('/', saleQntValid, saleProductIdValid, /* saleProductIdVerify, */ salesController.postSale);
 
 module.exports = router;
