@@ -10,7 +10,8 @@ const saleIdVerify = async (req, res, next) => {
   const { id } = req.params;
 
   const validId = await salesModel.getSaleById(id);
-
+  // console.log(validId);
+  // console.log(`length: ${validId.length}`);
   if (!validId || validId.length === 0) return res.status(HTTP_NOT_FOUND).json(NO_SALE);
 
   next();

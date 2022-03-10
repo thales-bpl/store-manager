@@ -31,7 +31,7 @@ const insertSalesProduct = async (newSaleId, saleBody) => {
   (sale_id, product_id, quantity)
   VALUES (?, ?, ?);`;
 
-  const insertSales = saleBody.map(({ product_id: productId, quantity }) =>
+  const insertSales = saleBody.map(({ productId, quantity }) =>
     connection.execute(query, [newSaleId, productId, quantity]));
 
   await Promise.all(insertSales);

@@ -9,13 +9,13 @@ const getSales = rescue(async (_req, res) => {
 const getSaleById = rescue(async (req, res) => {
   const { id } = req.params;
   const saleById = await salesService.getSaleById(id);
-  return res.status(200).json(saleById);
+  return res.status(saleById.code).json(saleById.content);
 });
 
 const postSale = rescue(async (req, res) => {
   const { body } = req;
   const newSale = await salesService.postSale(body);
-  return res.status(201).json(newSale);
+  return res.status(newSale.code).json(newSale.content);
 });
 
 module.exports = {

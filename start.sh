@@ -4,7 +4,7 @@ echo $' === === project log === ===
   2. Para acessar mysql: ./terminal.sh > mysql -u root -p > root
 
   === TO DO LIST ===
-  1. Fix saleProductIdVerify MW
+  1. PUT(sales/:id) - req8
 
   === NOTES ===
   1. Estudar como rodar o comando ``docker exec -it store-manager bash`` pelo docker-compose?
@@ -28,12 +28,6 @@ echo $' === === project log === ===
   Repo: https://github.com/tryber/sd-015-a-store-manager
 
   === ERROS NO README ===
-  1. Requisito 7:
-    README diz que body da Req pro endpoint POST(/sales) vem no formato:
-    [ { productId: 1, quantity: 3 } ]
-
-    quando na verdade vem no formato:
-    [ { product_id: 1, quantity: 3 } ]
 
   === === end of log === ===
 '
