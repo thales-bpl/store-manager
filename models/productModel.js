@@ -14,12 +14,6 @@ const getProductById = async (id) => {
   return rows[0];
 };
 
-const findProductByName = async (name) => {
-  const query = 'SELECT * FROM products WHERE name = ?;';
-  const [rows] = await connection.execute(query, [name]);
-  return rows[0];
-};
-
 const postProduct = async (name, quantity) => {
   const query = 'INSERT INTO products (name, quantity) VALUES (?, ?);';
   const [rows] = await connection.execute(query, [name, quantity]);
@@ -37,6 +31,12 @@ const deleteProduct = async (id) => {
   const query = `DELETE from products
     WHERE id = ?;`;
   await connection.execute(query, [id]);
+};
+
+const findProductByName = async (name) => {
+  const query = 'SELECT * FROM products WHERE name = ?;';
+  const [rows] = await connection.execute(query, [name]);
+  return rows[0];
 };
 
 module.exports = {

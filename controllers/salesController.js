@@ -18,8 +18,16 @@ const postSale = rescue(async (req, res) => {
   return res.status(newSale.code).json(newSale.content);
 });
 
+const putSale = rescue(async (req, res) => {
+  const { id } = req.params;
+  const { body } = req;
+  const editedSale = await salesService.putSale(id, body);
+  return res.status(editedSale.code).json(editedSale.content);
+});
+
 module.exports = {
   getSales,
   getSaleById,
   postSale,
+  putSale,
 };
