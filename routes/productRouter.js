@@ -7,10 +7,10 @@ const productNameValid = require('../middlewares/productNameValid');
 const productQntValid = require('../middlewares/productQntValid');
 
 router
-  .get('/', productController.getProducts) // OK
-  .get('/:id', productController.getProductById) // OK
-  .post('/', productQntValid, productNameValid, productController.postProduct) // OK
-  .put('/:id', productQntValid, productNameValid, productController.putProduct) // OK
-  .delete('/:id', productController.deleteProduct); // OK
+  .get('/', productController.getProducts)
+  .get('/:id', productController.getProductById)
+  .post('/', productQntValid, productNameValid, productController.postProduct)
+  .put('/:id', productQntValid, productNameValid, productController.putProduct);
+  // .delete('/:id', productController.deleteProduct);
 
 module.exports = router;

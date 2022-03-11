@@ -14,7 +14,7 @@ const productNameValid = (req, res, next) => {
 
   if (!name) return res.status(HTTP_BAD_REQUEST).json(NAME_REQUIRED);
   if (name.length < 5) return res.status(HTTP_UNPROCESSABLE_ENTITY).json(INVALID_NAME);
-  
+
   next();
 };
 

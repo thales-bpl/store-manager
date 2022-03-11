@@ -60,27 +60,26 @@ const putProduct = async (id, name, quantity) => {
   };
 };
 
-const deleteProduct = async (id) => {
-  const productById = await productModel.getProductById(id);
-  console.log(productById);
-  if (!productById) {
-    return {
-      code: 404,
-      content: { message: 'Product not found' },
-    };
-  }
+// const deleteProduct = async (id) => {
+//   const productById = await productModel.getProductById(id);
+//   if (!productById) {
+//     return {
+//       code: 404,
+//       content: { message: 'Product not found' },
+//     };
+//   }
 
-  await productModel.deleteProduct(id);
-  return {
-    code: 204,
-    content: {},
-  };
-};
+//   await productModel.deleteProduct(id);
+//   return {
+//     code: 204,
+//     content: {},
+//   };
+// };
 
 module.exports = {
   getProducts,
   getProductById,
   postProduct,
   putProduct,
-  deleteProduct,
+  // deleteProduct,
 };
