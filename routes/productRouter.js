@@ -10,7 +10,7 @@ router
   .get('/', productController.getProducts)
   .get('/:id', productController.getProductById)
   .post('/', productQntValid, productNameValid, productController.postProduct)
-  .put('/:id', productQntValid, productNameValid, productController.putProduct);
-  // .delete('/:id', productController.deleteProduct);
+  .put('/:id', productQntValid, productNameValid, productController.putProduct)
+  .delete('/:id', productController.deleteProduct);
 
 module.exports = router;

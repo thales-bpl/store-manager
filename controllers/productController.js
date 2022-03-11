@@ -25,16 +25,16 @@ const putProduct = rescue(async (req, res) => {
   return res.status(editedProduct.code).json(editedProduct.content);
 });
 
-// const deleteProduct = rescue(async (req, res) => {
-//   const { id } = req.params;
-//   const deletedProduct = await productService.deleteProduct(id);
-//   return res.status(deletedProduct.code).json(deletedProduct.content);
-// });
+const deleteProduct = rescue(async (req, res) => {
+  const { id } = req.params;
+  const deletedProduct = await productService.deleteProduct(id);
+  return res.status(deletedProduct.code).json(deletedProduct.content);
+});
 
 module.exports = {
   getProducts,
   getProductById,
   postProduct,
   putProduct,
-  // deleteProduct,
+  deleteProduct,
 };
