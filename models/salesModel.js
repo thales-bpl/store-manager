@@ -26,24 +26,21 @@ const postSale = async () => {
   return rows;
 };
 
-const insertSalesProduct = async (newSaleId, saleBody) => {
+const insertSalesProduct = async (saleId, saleBody) => {
   const query = `INSERT INTO StoreManager.sales_products
   (sale_id, product_id, quantity)
   VALUES (?, ?, ?);`;
 
-  const insertSales = saleBody.map(({ productId, quantity }) =>
-    connection.execute(query, [newSaleId, productId, quantity]));
+  const insertedSale = saleBody.map(({ productId, quantity }) =>
+    connection.execute(query, [saleId, productId, quantity]));
 
-  await Promise.all(insertSales);
+  await Promise.all(insertedSale);
 };
 
 const putSale = async (id, saleBody) => {
   const query = `UPDATE StoreManager.sales_products
   SET product_id = ?, quantity = ?
-  WHERE sale_id = ?`;
-
-  console.log(`saleBody[0].productId: ${saleBody[0].productId}`);
-  console.log(`saleBody[0].quantity: ${saleBody[0].quantity}`);
+  WHERE sale_id = ?;`;
 
   const editedSale = saleBody.map(({ productId, quantity }) =>
     connection.execute(query, [productId, quantity, id]));

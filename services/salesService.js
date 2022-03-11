@@ -39,7 +39,7 @@ const postSale = async (saleBody) => {
   }
 
   const newSaleId = await salesModel.postSale();
-  await salesModel.insertSalesProduct(newSaleId, saleBody);
+  await salesModel.insertSalesProduct(newSaleId.insertId, saleBody);
 
   return {
     code: 201,
@@ -72,16 +72,6 @@ const putSale = async (id, saleBody) => {
   await salesModel.putSale(id, saleBody);
   return { code: 200, content: { saleId: id, itemUpdated: saleBody } };
 };
-
-// const verifyId = async (id) => {
-//   const saleById = await salesModel.getSaleById(id);
-//   if (saleById.length === 0) {
-//     return {
-//       code: 404,
-//       content: { message: 'Sale not found' },
-//     };
-//   }
-// };
 
 module.exports = {
   getSales,

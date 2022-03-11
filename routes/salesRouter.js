@@ -7,9 +7,9 @@ const saleQntValid = require('../middlewares/saleQntValid');
 const saleProductIdValid = require('../middlewares/saleProductIdValid');
 
 router
-  .get('/', salesController.getSales) // OK
-  .get('/:id', salesController.getSaleById) // OK
-  .post('/', saleQntValid, saleProductIdValid, salesController.postSale) // OK
-  .put('/:id', saleQntValid, saleProductIdValid, salesController.putSale); // OK
+  .get('/', salesController.getSales)
+  .get('/:id', salesController.getSaleById)
+  .post('/', saleQntValid, saleProductIdValid, salesController.postSale)
+  .put('/:id', saleQntValid, saleProductIdValid, salesController.putSale);
 
 module.exports = router;
