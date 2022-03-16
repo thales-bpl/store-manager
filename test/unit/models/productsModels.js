@@ -63,6 +63,7 @@ describe('Test ProductModel 2: getProductById', () => { // OK
     // const ID = 2;
     const result = await productModel.getProductById();
 
+    expect(result).to.be.an('object');
     expect(result).to.have.property('id'); // verificar multiplas properties simultaneamente
     expect(result).not.to.be.empty;
   });
@@ -78,18 +79,18 @@ describe('Test ProductModel 3: postProduct', () => { // OK
 
     const MOCK = [[NEW_PRODUCT], []]
 
-    sinon.stub(connection, "execute").resolves(MOCK);
+    sinon.stub(connection, 'execute').resolves(MOCK);
   });
 
   after(async () => {
     connection.execute.restore();
   });
   
-  it("retorna um objeto com o id do produto inserido", async () => {
+  it('retorna um objeto com o id do produto inserido', async () => {
     const response = await productModel.postProduct()
 
-    expect(response[0]).to.be.a("object");
-    expect(response[0]).to.have.a.property("id");
+    expect(response[0]).to.be.a('object');
+    expect(response[0]).to.have.a.property('id');
   });
 });
 
@@ -104,7 +105,7 @@ describe('Test ProductModel 4: deleteProduct', () => { // OK
     connection.execute.restore();
   });
   
-  it("Testa se o produto é deletado com sucesso", async () => {
+  it('Testa se a função retorna "undefined" após executar a query', async () => {
     const response = await productModel.deleteProduct()
 
     expect(response).to.be.undefined;
