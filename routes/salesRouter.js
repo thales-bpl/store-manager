@@ -11,6 +11,7 @@ router
   .get('/', rescue(salesController.getSales))
   .get('/:id', rescue(salesController.getSaleById))
   .post('/', saleQntValid, saleProductIdValid, rescue(salesController.postSale))
-  .put('/:id', saleQntValid, saleProductIdValid, rescue(salesController.putSale));
+  .put('/:id', saleQntValid, saleProductIdValid, rescue(salesController.putSale))
+  .delete('/:id', rescue(salesController.deleteSale));
 
 module.exports = router;

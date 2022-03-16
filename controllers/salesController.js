@@ -24,9 +24,17 @@ const putSale = async (req, res) => {
   return res.status(editedSale.code).json(editedSale.content);
 };
 
+// input: id da venda a ser deletada
+const deleteSale = async (req, res) => {
+  const { id } = req.params;
+  const deletedSale = await salesService.deleteSale(id);
+  return res.status(deletedSale.code).json(deletedSale.content);
+};
+
 module.exports = {
   getSales,
   getSaleById,
   postSale,
   putSale,
+  deleteSale,
 };
