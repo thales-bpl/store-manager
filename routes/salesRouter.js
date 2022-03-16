@@ -1,4 +1,5 @@
 const express = require('express');
+const rescue = require('express-rescue');
 
 const router = express.Router();
 
@@ -7,9 +8,9 @@ const saleQntValid = require('../middlewares/saleQntValid');
 const saleProductIdValid = require('../middlewares/saleProductIdValid');
 
 router
-  .get('/', salesController.getSales)
-  .get('/:id', salesController.getSaleById)
-  .post('/', saleQntValid, saleProductIdValid, salesController.postSale)
-  .put('/:id', saleQntValid, saleProductIdValid, salesController.putSale);
+  .get('/', rescue(salesController.getSales))
+  .get('/:id', rescue(salesController.getSaleById))
+  .post('/', saleQntValid, saleProductIdValid, rescue(salesController.postSale))
+  .put('/:id', saleQntValid, saleProductIdValid, rescue(salesController.putSale));
 
 module.exports = router;

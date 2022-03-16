@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const productController = require('../../../controllers/productController');
 const productService = require('../../../services/productService');
 
-describe('Ao chamar a função getProducts no controller de produto', () => {
+describe('Ao chamar a função getProducts no controller de produto', () => { // OK
   const ALL_PRODUCTS = [
     {
       "id": 1,
@@ -44,7 +44,7 @@ describe('Ao chamar a função getProducts no controller de produto', () => {
   });
 });
 
-describe('Ao chamar o controller list', () => {
+describe('Ao chamar o productController.getProducts', () => { // OK
   let request = {}
   let response = {}
   let next = {};
@@ -63,15 +63,15 @@ describe('Ao chamar o controller list', () => {
     });
 
     it('responde a requisição com status 200', async () => {
-      await productController.getProducts(request, response, next);
+      await productController.getProducts(request, response); // next()? Pedro usou no course
 
-      expect(response.status.calledWith(200)).to.be.equal(false);
+      expect(response.status.calledWith(200)).to.be.equal(true);
     });
 
     it('res.json() é chamado passando um array', async () => {
-      await productController.getProducts(request, response, next);
+      await productController.getProducts(request, response); // next()? Pedro usou no course
 
-      expect(response.json.calledWith(sinon.match.array)).to.be.equal(false);
+      expect(response.json.calledWith(sinon.match.array)).to.be.equal(true);
     });
   });
 });
