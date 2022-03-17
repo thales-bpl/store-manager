@@ -7,7 +7,7 @@ const updateStock = async (dbSaleBody, newSaleBody) => {
       productId: dbSaleBody.id,
       quantity: dbSaleBody.quantity - newSaleBody.quantity,
     };
-    console.log('productToAdd from salesService.updateStock');
+    console.log('productToAdd from salesService.updateStock:');
     console.log(productToAdd);
     // TO-DO: temos algum problema de contagem aqui
     await productModel.addToStock(productToAdd);
@@ -18,23 +18,17 @@ const updateStock = async (dbSaleBody, newSaleBody) => {
       productId: dbSaleBody.id,
       quantity: newSaleBody.quantity - dbSaleBody.quantity,
     };
-    console.log('productToRemove from salesService.updateStock');
+    console.log('productToRemove from salesService.updateStock:');
     console.log(productToRemove);
     // TO-DO: provavelmente aqui tb
     await productModel.removeFromStock(productToRemove);
   }
 };
 
-// const updateStock = async (dbSaleBody, newSaleBody) => {
-//   if (dbSaleBody[index].quantity > newSaleBody[index].quantity)
-//   const updatedItems = productsBody.map((product) => productModel.removeFromStock(product));
-//   await Promise.all(updatedItems);
-// };
-
 const validateRemoveFromStock = async (saleBody) => {
   const targetProducts = saleBody.map(({ productId }) => productModel.getProductById(productId));
   const storageProducts = await Promise.all(targetProducts);
-  const invalidSale = saleBody.some(({ quantity }, index) => // esse funciona apenas pro caso de subtração de estoque (post e put)
+  const invalidSale = saleBody.some(({ quantity }, index) =>
     quantity > storageProducts[index].quantity);
 
   return invalidSale; // retorna true se alguma compra é maior que o estoque
@@ -92,7 +86,6 @@ const putSale = async (id, saleBody) => {
   const saleById = await salesModel.getSaleById(id);
   if (saleById.length === 0) return { code: 404, content: { message: 'Sale not found' } };
 
-  console.log(allProducts);
   const updated = allProducts.map((dbSaleBody, index) => updateStock(dbSaleBody, saleBody[index]));
   await Promise.all(updated);
   // Pode ser subtração ou adição
