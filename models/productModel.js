@@ -39,6 +39,24 @@ const findProductByName = async (name) => {
   return rows[0];
 };
 
+const removeFromStock = async ({ productId, quantity }) => {
+  const query = `UPDATE products
+  SET quantity = quantity - ?
+  WHERE id = ?
+  ;`;
+  await connection.execute(query, [quantity, productId]);
+  console.log('removed from stock!');
+};
+
+const addToStock = async ({ productId, quantity }) => {
+  const query = `UPDATE products
+  SET quantity = quantity + ?
+  WHERE id = ?
+  ;`;
+  await connection.execute(query, [quantity, productId]);
+  console.log('added to stock!');
+};
+
 module.exports = {
   getProducts,
   getProductById,
@@ -46,4 +64,6 @@ module.exports = {
   postProduct,
   putProduct,
   deleteProduct,
+  removeFromStock,
+  addToStock,
 };

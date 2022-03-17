@@ -4,7 +4,8 @@ echo $' === === project log === ===
   2. Para acessar mysql: ./terminal.sh > mysql -u root -p > root
 
   === TO DO LIST ===
-  1. PUT(sales/:id) - req8
+  1. Fix validador de quantidade no salesService.
+  2. Talvez tentar resolver tudo por SQL, invertendo a ordem das queries de updateStorage e putSale.
 
   === NOTES ===
   1. Estudar como rodar o comando ``docker exec -it store-manager bash`` pelo docker-compose?
