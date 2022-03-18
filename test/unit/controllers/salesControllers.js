@@ -48,3 +48,85 @@ describe('Test salesController 1: getSales', () => {
     });
   });
 });
+
+describe('Test salesController 2: getSaleById', () => {
+  const request = {};
+  const response = {};
+  const SERVICE_RESPONSE = {
+    code: 200,
+    content: [
+      {
+        date: "2022-03-18T00:44:05.000Z",
+        productId: 3,
+        quantity: 15
+      }
+    ]
+  };
+
+  describe('No caso de sucesso na requisição:', () => {
+    before(() => {
+      request.params = { };
+      response.status = sinon.stub().returns(response);
+      response.json = sinon.stub().returns(request);
+      sinon.stub(salesService, 'getSaleById').resolves(SERVICE_RESPONSE);
+    });
+
+    after(() => {
+      salesService.getSaleById.restore()
+    });
+
+    it('responde a requisição com status 200', async () => {
+      await salesController.getSaleById(request, response);
+
+      expect(response.status.calledWith(200)).to.be.true;
+    });
+  });
+
+});
+
+describe('Test salesController 3: postSale', () => {
+  const request = {};
+  const response = {};
+  const SERVICE_RESPONSE = {
+    code: 201,
+    content: {
+      id: 3,
+      itemsSold: [
+        {
+          productId: 3,
+          quantity: 5
+        }
+      ]
+    }
+  };
+
+  describe('Quando o serviço retorna o produto encontrado', () => {
+    before(() => {
+      request.body = [
+        {
+          productId: 3,
+          quantity: 5
+        }
+      ];
+      response.status = sinon.stub().returns(response);
+      response.json = sinon.stub().returns();
+      sinon.stub(salesService, 'postSale').resolves(SERVICE_RESPONSE);
+    });
+
+    after(() => {
+      salesService.postSale.restore();
+    });
+
+    it('responde a requisição com status 201', async () => {
+      await salesController.postSale(request, response);
+
+      expect(response.status.calledWith(201)).to.be.true;
+    });
+
+    it('responde a requisição com json de objeto do produto', async () => {
+      await salesController.postSale(request, response);
+
+      expect(response.json.calledWith(sinon.match.object)).to.be.true;
+    });
+  });
+});

@@ -41,7 +41,7 @@ describe('Test ProductController 1: getProducts', () => { // OK
       expect(response.status.calledWith(200)).to.be.true;
     });
 
-    it('responde a requisição com um json de array de objetos', async () => {
+    it('responde a requisição com um json', async () => {
       await productController.getProducts(request, response);
 
       expect(response.json.calledWith(sinon.match.array)).to.be.true;
@@ -49,38 +49,124 @@ describe('Test ProductController 1: getProducts', () => { // OK
   });
 });
 
-// describe('Test ProductController 2: getProductById', () => { // OK
-//   const request = {}
-//   const response = {}
-//   // let next = () => {}
-//   const PRODUCT = {
-//     id: 2,
-//     name: "Traje de encolhimento",
-//     quantity: 20
-//   }
+describe('Test ProductController 2: getProductById', () => {
+  const request = {};
+  const response = {};
 
-//   describe('Quando o serviço retorna o produto encontrado', () => {
-//     before(() => {
-//       request.params = { };
-//       response.status = sinon.stub().returns(response);
-//       response.json = sinon.stub().returns();
-//       sinon.stub(productService, 'getProductById').resolves(PRODUCT.id);
-//     });
+  const SERVICE_RESPONSE = {
+    code: 200,
+    content: {
+      id: 2,
+      name: "Traje de encolhimento",
+      quantity: 20
+    }
+  };
 
-//     after(() => {
-//       productService.getProductById.restore();
-//     });
+  describe('Quando o serviço retorna o produto encontrado', () => {
+    before(() => {
+      request.params = { };
+      response.status = sinon.stub().returns(response);
+      response.json = sinon.stub().returns();
+      sinon.stub(productService, 'getProductById').resolves(SERVICE_RESPONSE);
+    });
 
-//     it('responde a requisição com status 200', async () => {
-//       await productController.getProductById(request, response);
+    after(() => {
+      productService.getProductById.restore();
+    });
 
-//       expect(response.status.calledWith(200)).to.be.true;
-//     });
+    it('responde a requisição com status 200', async () => {
+      await productController.getProductById(request, response);
 
-//     it('responde a requisição com json de objeto do produto', async () => {
-//       await productController.getProductById(request, response);
+      expect(response.status.calledWith(200)).to.be.true;
+    });
 
-//       expect(response.json.calledWith(sinon.match.object)).to.be.true;
-//     });
-//   });
-// });
+    it('responde a requisição com json de objeto do produto', async () => {
+      await productController.getProductById(request, response);
+
+      expect(response.json.calledWith(sinon.match.object)).to.be.true;
+    });
+  });
+});
+
+describe('Test ProductController 3: postProduct', () => {
+  const request = {};
+  const response = {};
+  const SERVICE_RESPONSE = {
+    code: 200,
+    content: {
+      id: 4,
+      name: "Nintendo Switch",
+      quantity: 10
+    }
+  };
+
+  describe('Quando o serviço retorna o produto encontrado', () => {
+    before(() => {
+      request.body = {
+        name: "Nintendo Switch",
+        quantity: 10
+      };
+      response.status = sinon.stub().returns(response);
+      response.json = sinon.stub().returns();
+      sinon.stub(productService, 'postProduct').resolves(SERVICE_RESPONSE);
+    });
+
+    after(() => {
+      productService.postProduct.restore();
+    });
+
+    it('responde a requisição com status 200', async () => {
+      await productController.postProduct(request, response);
+
+      expect(response.status.calledWith(200)).to.be.true;
+    });
+
+    it('responde a requisição com json de objeto do produto', async () => {
+      await productController.postProduct(request, response);
+
+      expect(response.json.calledWith(sinon.match.object)).to.be.true;
+    });
+  });
+});
+
+describe('Test ProductController 4: putProduct', () => {
+  const request = {};
+  const response = {};
+  const SERVICE_RESPONSE = {
+    code: 200,
+    content: {
+      id: 4,
+      name: "Nintendo Switch",
+      quantity: 10
+    }
+  };
+
+  describe('Quando o serviço retorna o produto encontrado', () => {
+    before(() => {
+      request.params = { };
+      request.body = {
+        name: "Nintendo Switch",
+        quantity: 10
+      };
+      response.status = sinon.stub().returns(response);
+      response.json = sinon.stub().returns();
+      sinon.stub(productService, 'putProduct').resolves(SERVICE_RESPONSE);
+    });
+
+    after(() => {
+      productService.putProduct.restore();
+    });
+
+    it('responde a requisição com status 200', async () => {
+      await productController.putProduct(request, response);
+
+      expect(response.status.calledWith(200)).to.be.true;
+    });
+
+    it('responde a requisição com json de objeto do produto', async () => {
+      await productController.putProduct(request, response);
+
+      expect(response.json.calledWith(sinon.match.object)).to.be.true;
+    });
+  });
+});
